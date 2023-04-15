@@ -7,18 +7,44 @@ const Portfolio=require('../models/Portfolio');
 const addPortfolio=async(req,res)=>{
     //console.log(req.body)
 
-    const {user_email,investmentName,investmentAmount,investmentDate}=req.body;
+    const {user_email,investmentName,investmentAmount,investmentDate,quantity}=req.body;
     
     var currentTime = new Date();
-    let data={user_email:user_email,investments:{investmentName:investmentName,investmentAmount:investmentAmount,investmentDate:investmentDate},createdAt:currentTime,updatedAt:currentTime}
-    var investment={investmentName:investmentName,investmentAmount:investmentAmount,investmentDate:investmentDate}
+    let data={user_email:user_email,investments:{investmentName:investmentName,investmentAmount:investmentAmount,investmentDate:investmentDate,quantity:quantity},createdAt:currentTime,updatedAt:currentTime}
+    var investment={investmentName:investmentName,investmentAmount:investmentAmount,investmentDate:investmentDate,quantity:quantity}
     
     try{
-    let port = await Portfolio.findOne({user_email:user_email});
+    let port = await Portfolio.findOne({user_email:user_email,investments: {
+        $elemMatch: {
+          investmentName: investmentName
+        }
+      }});
+    let port2=await Portfolio.findOne({user_email:user_email});
 
     
         if (port) {
-            console.log(port)
+            console.log('in this port ',port)
+            //let final_quant=quantity+port.investments.quantity;
+            
+            await Portfolio.findOneAndUpdate(
+                { user_email: user_email,investments: {
+                    $elemMatch: {
+                      investmentName: investmentName
+                    }
+                  } },
+                { $inc: { 'investments.$.quantity': quantity ,'investments.$.investmentAmount': investmentAmount } }
+            )
+           
+                
+                
+                return res.status(200).json({
+                    ok:true,
+                    msg:'updated-quantity'
+                })
+    
+            
+        }
+        else if(port2){
             await Portfolio.findOneAndUpdate(
                 { user_email: user_email },
                 { $push: { investments: investment } }
@@ -28,11 +54,11 @@ const addPortfolio=async(req,res)=>{
                 
                 return res.status(200).json({
                     ok:true,
-                    msg:'updated'
+                    msg:'updated-portfolio'
                 })
-    
-            
         }
+        
+        
         else{
             let port_new=new Portfolio(data);
             console.log(port_new)

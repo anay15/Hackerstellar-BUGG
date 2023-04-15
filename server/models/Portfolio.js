@@ -7,7 +7,10 @@ const PortfolioSchema = new Schema({
   investments: [{
     investmentName: String, 
     investmentAmount: Number, 
-    investmentDate: String
+    investmentDate: String,
+    quantity:Number,
+
+
   }],
   createdAt: Date,
   updatedAt: Date 

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import PortfolioComponent from "../components/PortfolioComponent";
 
 const Portfolio=()=>{
     const [data,setData]=useState([]);
     const [loaded,setLoaded]=useState(0);
     const user=useSelector((state)=>state.auth.user);
     console.log(data)
-    useEffect(()=>{
+   
+
+   useEffect(()=>{
 
         if(user){
         let url='/api/portfolio/get?email='+user.email;
@@ -23,7 +26,7 @@ const Portfolio=()=>{
            .then((data) => {
              
             
-            if(data) {setData(data);setLoaded(1)}
+            if(data) {setData(data.investments);setLoaded(1)}
      
              
               else {
@@ -42,7 +45,26 @@ const Portfolio=()=>{
     return(
         <div>
 
-          {loaded==1?<>helo</>:<></>}
+          {loaded==1?
+            (
+            <div class="row row-cols-4">
+            {data.map((item) => {
+             
+                return (
+                <div class="col">
+                <PortfolioComponent data={item}/>
+                </div>
+                );
+        
+        
+            })}
+          </div>
+        ):
+          
+          
+          
+          <></>
+          }
          
 
         </div>
