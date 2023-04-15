@@ -53,27 +53,27 @@ function Navbar() {
                     </li>
                     <li>
                         <a href="#" className="menu-item">
-                            iPad
+                            place
                         </a>
                     </li>
                     <li>
                         <a href="#" className="menu-item">
-                            iPhone
+                            place
                         </a>
                     </li>
                     <li>
                         <a href="#" className="menu-item">
-                            Watch
+                            place
                         </a>
                     </li>
                     <li>
                         <a href="#" className="menu-item">
-                            TV
+                            place
                         </a>
                     </li>
                     <li>
                         <a href="#" className="menu-item">
-                            Music
+                            place
                         </a>
                     </li>
                     <li>
@@ -92,14 +92,14 @@ function Navbar() {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/portfolio">
                             <FaShoppingBasket />
                         </a>
                     </li>
 
                     {logged_in?
                      <li>
-                     <a href="">
+                     <a href="/profile">
                         {user?user.name:''}
                      </a>
                  </li>:<></>

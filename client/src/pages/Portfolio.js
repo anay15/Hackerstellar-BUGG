@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import InvestmentCard from "../components/InvestmentCard"
-import CarouselComponent from "../components/Carousel";
+import { useSelector } from "react-redux";
 
-
-const Investment=()=>{
+const Portfolio=()=>{
     const [data,setData]=useState([]);
     const [loaded,setLoaded]=useState(0);
+    const user=useSelector((state)=>state.auth.user);
     console.log(data)
     useEffect(()=>{
 
+        if(user){
+        let url='/api/portfolio/get?email='+user.email;
+        
+
         (async()=>{
-        await fetch('/api/investments/', {
+        await fetch(url, {
             method:'GET',
              headers: {
                "Content-Type": "application/json",
@@ -32,39 +35,18 @@ const Investment=()=>{
         return () => {
             // this now gets called when the component unmounts
           };
-    },[]);
-
-
     
-    return(
+      }  
+      },[user]);
 
-      <div class='container-fluid'>
-        
-       
-         {loaded==1?
-            (
-                <div class="row row-cols-4">
-                {data.map((item) => {
-                 
-                    return (
-                    <div class="col">
-                    <InvestmentCard data={item}/>
-                    </div>
-                    );
-            
-            
-                })}
-              </div>
-        )
-        :<></>}
-        
-      
-       
+    return(
+        <div>
+
+          {loaded==1?<>helo</>:<></>}
+         
+
         </div>
     )
 
-
-
 }
-
-export default Investment
+export default Portfolio

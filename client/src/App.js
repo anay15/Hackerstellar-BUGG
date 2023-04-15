@@ -8,6 +8,9 @@ import { authLogin } from './reducers/authReducer';
 import { useEffect } from 'react';
 import { Navigate } from "react-router-dom";
 import Investment from './pages/Investment';
+import Profile from './pages/Profile';
+import InvestmentDetail from './pages/InvestmentDetail';
+import Portfolio from './pages/Portfolio';
 
 function App() {
   const logged_in=useSelector((state)=>state.auth.login);
@@ -36,6 +39,18 @@ function App() {
           <Route 
             path="/investments" 
             element={<Investment />} 
+          />
+           <Route 
+            path="/profile" 
+            element={<Profile />} 
+          />
+           <Route 
+            path="/investmentdetail" 
+            element={<InvestmentDetail />} 
+          />
+          <Route 
+            path="/portfolio" 
+            element={<Portfolio />} 
           />
 
           {!logged_in?

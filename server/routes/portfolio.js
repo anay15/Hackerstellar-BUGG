@@ -4,8 +4,9 @@ const dotenv = require('dotenv');
 const express=require('express');
 const router=express.Router()
 
-const {addPortfolio}=require('../controllers/portfolio');
+const {addPortfolio, getPortfolio}=require('../controllers/portfolio');
 
 router.post('/',addPortfolio);
+router.get('/get',getPortfolio);
 
 module.exports=router;

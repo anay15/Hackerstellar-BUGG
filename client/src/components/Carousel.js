@@ -12,7 +12,7 @@ function CarouselComponent() {
             <Carousel className='carousel-container' >
                 <Carousel.Item>
                     <img
-                        className="d-block w-60 carousel-image"
+                        className="d-block w-40 h-40"
                         src={image[0]}
                         alt="First slide"
                     />

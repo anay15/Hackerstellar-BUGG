@@ -19,16 +19,15 @@ const addPortfolio=async(req,res)=>{
     
         if (port) {
             console.log(port)
-            port.updateOne(
-                 
-                { $push: { investments: investment } },
-                
-            );
+            await Portfolio.findOneAndUpdate(
+                { user_email: user_email },
+                { $push: { investments: investment } }
+            )
            
-                let port_new=new Portfolio(data);
-                //console.log(port_new)
-                await port_new.save();
+                
+                
                 return res.status(200).json({
+                    ok:true,
                     msg:'updated'
                 })
     
@@ -39,6 +38,7 @@ const addPortfolio=async(req,res)=>{
             console.log(port_new)
             await port_new.save();
             return res.status(200).json({
+                ok:true,
                 msg:'added'
             })
 
@@ -53,10 +53,21 @@ const addPortfolio=async(req,res)=>{
       }
 
 }
+const getPortfolio=async(req,res)=>{
+    try{
+        let query=req.query.email;
+        console.log(query)
+        const investments=await Portfolio.findOne({user_email:query})
+        res.status(200).json(investments)
 
+    }
+    catch(error){
+        res.json({message:error})
+    }
+}
 
 module.exports={
-    addPortfolio,
+    addPortfolio,getPortfolio
     
 }
 
