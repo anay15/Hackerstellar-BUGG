@@ -48,14 +48,14 @@ const Investment=()=>{
     return(
 
       <div class='container-fluid'>
-        <div class='row-12'>
+        <div class='row'>
 
 
-        <div class='col-4'>
+        <div class='col-2'>
           <Sort/>
         </div>
 
-        <div class='col-8'>
+        <div class='col-10'>
          {loaded==1?
             (
                 <div class="row row-cols-4">

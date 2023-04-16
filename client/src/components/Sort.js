@@ -40,22 +40,22 @@ function Sort(){
     return(
    
     
-    <div class='main'>
+    <div class='main' style={{padding:5,marginTop:10}}>
         
-        <div class='header'>
+        <div class='header' style={{fontWeight:'bold',fontSize:23}}>
             Sort
         </div>
 
-        <div class="form-check">
+        <div class="form-check"  >
         <input class="form-check-input" type="checkbox" value='asc' id="flexCheck1" onChange={handleChange}/>
-        <label class="form-check-label text" for="flexCheck1" style={{fontSize:'0.8em'}}>
+        <label class="form-check-label text" for="flexCheck1" style={{fontSize:'1.2em'}}>
         Environmental Impact-Ascending
         </label>
         </div>
 
         <div class="form-check">
         <input class="form-check-input" type="checkbox" value='desc' id="flexCheckDefault" onChange={handleChange}/>
-        <label class="form-check-label text" for="flexCheckDefault" style={{fontSize:'0.8em'}}>
+        <label class="form-check-label text" for="flexCheckDefault" style={{fontSize:'1.2em'}}>
         Environmental Impact-Descending
         </label>
         </div>

@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import InvestmentDetail from './pages/InvestmentDetail';
 import Portfolio from './pages/Portfolio';
 import Form from './pages/Blog';
+import { Chat } from './pages/Chatbot';
 
 function App() {
   const logged_in=useSelector((state)=>state.auth.login);
@@ -29,8 +30,11 @@ function App() {
   return (
     <div className="App">
     <Navbar/>
+    <Chat/>
     <BrowserRouter>
+
       <div style={{marginTop:'0%'}}>
+
         <Routes>
           <Route 
             path="/" 
@@ -56,6 +60,11 @@ function App() {
             <Route 
             path="/blog" 
             element={<Form />} 
+          />
+
+          <Route 
+            path="/chat" 
+            element={<Chat />} 
           />
 
           {!logged_in?

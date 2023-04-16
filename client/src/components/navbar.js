@@ -53,6 +53,11 @@ function Navbar() {
                         </a>
                     </li>
                     <li>
+                        <a href="/blog" className="menu-item">
+                           Blog
+                        </a>
+                    </li>
+                    {/* <li>
                         <a href="#" className="menu-item">
                             place
                         </a>
@@ -71,27 +76,13 @@ function Navbar() {
                         <a href="#" className="menu-item">
                             place
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" className="menu-item">
-                            place
-                        </a>
-                    </li>
-                    <li>
-
-                        {!logged_in?<a href="/login" className="menu-item">
-                            Login
-                        </a>:
-                        <a onClick={()=>{logOut()}}>
-                            Logout
-                            </a>}
-                        
-                    </li>
-                    <li>
+                    </li> */}
+                  
+                    {/* <li>
                         <a href="#" id="search" onClick={handleSearchClick}>
                             <FaSearch />
                         </a>
-                    </li>
+                    </li> */}
                     <li>
                         <a href="/portfolio">
                             <FaShoppingBasket />
@@ -105,6 +96,16 @@ function Navbar() {
                      </a>
                  </li>:<></>
                     }
+                      <li>
+
+                        {!logged_in?<a href="/login" className="menu-item">
+                            Login
+                        </a>:
+                        <a onClick={()=>{logOut()}}>
+                            Logout
+                            </a>}
+
+                        </li>
                 </ul>
                 <div className={isActive ? "search-form active" : "search-form"}>
                     <form>
