@@ -4,7 +4,9 @@ const dotenv = require('dotenv');
 const InvestmentOption = require('../models/InvestmentOption');
 
 const getInvestment=async(req,res)=>{
+   
     try{
+        console.log('req',req.query)
 
     //pagination for infinite scrolling
     //let page = req.query.page??1;
@@ -12,21 +14,7 @@ const getInvestment=async(req,res)=>{
 
     let query={};
     let sort={};
-   /*  let sort={'AddedDate':-1}
-
-    //filter for resller site
-    if(req.query.reseller!=undefined) {
-        console.log(req.query)
-        if(req.query.reseller.length==0){
-        
-        }
-        else{
-            query['Store']={'$in':req.query.reseller}
-            //console.log('query is ',query)
-        }
-    } */
    
-
     //search for product
     /* if(req.query.search!=undefined){
         if(req.query.search!=''){
@@ -77,9 +65,16 @@ const getInvestment=async(req,res)=>{
             }
         }
 
+        if(req.query.search!=undefined){
+            if(req.query.search!=''){
+                query={
+                    name:req.query.search}
+                }
+        }
+
     console.log('query is ',query)
     console.log('sort type is ',sort)
-    const investments=await InvestmentOption.find().sort(sort)
+    const investments=await InvestmentOption.find(query).sort(sort)
     res.status(200).json(investments)
     
 }
@@ -87,6 +82,7 @@ const getInvestment=async(req,res)=>{
         res.json({message:error})
     }
 }
+
 
 
 
