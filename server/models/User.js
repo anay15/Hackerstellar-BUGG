@@ -14,9 +14,9 @@ const UserSchema = Schema({
     type: String,
     required: [true, "Password is required"],
   },
-  riskTolerance:{type:Number},
-  environmentalScore:{type:Number},
-  socialScore:{type:Number},
+  riskTolerance:{type:Number,default:0},
+  environmentalScore:{type:Number,default:0},
+  socialScore:{type:Number,default:0},
 });
 
 

@@ -86,4 +86,24 @@ const renewToken = async (req, res) => {
   res.json({ ok: true, user: { _id: id, name }, token });
 };
 
-module.exports = { createUser, loginUser, renewToken };
+const updateUser=async(req,res)=>{
+  const {email,riskTolerance,environmentalScore,socialScore}=req.body;
+
+  try{
+  await User.findOneAndUpdate({email:email},{$set:{'riskTolerance':riskTolerance,'environmentalScore':environmentalScore,'socialScore':socialScore}});
+  return res.status(200).json({
+    ok:true,
+    msg:'updated-portfolio'
+})
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: "Please, contact the administrator",
+    });
+  }
+
+}
+
+module.exports = { createUser, loginUser, renewToken ,updateUser};

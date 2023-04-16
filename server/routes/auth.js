@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { createUser, loginUser, renewToken } = require("../controllers/auth");
+const { createUser, loginUser, renewToken, updateUser } = require("../controllers/auth");
 const { emailExists } = require("../helpers/databaseValidators");
 const validateFields = require("../middlewares/validateFields");
 const validateJWT = require("../middlewares/validateJWT");
@@ -41,6 +41,8 @@ router.post(
   ],
   loginUser
 );
+
+router.post('/update',updateUser);
 
 router.get("/renew", validateJWT, renewToken);
 
