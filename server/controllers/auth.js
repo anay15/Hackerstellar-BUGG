@@ -87,7 +87,9 @@ const renewToken = async (req, res) => {
 };
 
 const updateUser=async(req,res)=>{
+
   const {email,riskTolerance,environmentalScore,socialScore}=req.body;
+  console.log(req.body)
 
   try{
   await User.findOneAndUpdate({email:email},{$set:{'riskTolerance':riskTolerance,'environmentalScore':environmentalScore,'socialScore':socialScore}});

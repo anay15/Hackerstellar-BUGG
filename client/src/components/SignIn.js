@@ -57,7 +57,7 @@ const SignIn=()=>{
                if (data.ok) {
                   const { user, token,navigate } = data;
                  console.log(user)
-                  dispatch(authLogin(user))
+                  
                   
         
                   localStorage.setItem("token", token);

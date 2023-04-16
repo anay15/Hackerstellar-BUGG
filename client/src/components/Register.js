@@ -113,7 +113,7 @@ const Register=()=>{
         </div>
 
         <div class='mt-4 px-5'>
-            <TextField id="standard-basic" label="Password" variant="outlined" type='password' fullWidth='true' value={password2} name="password2"
+            <TextField id="standard-basic" label="Confirm Password" variant="outlined" type='password' fullWidth='true' value={password2} name="password2"
                 onChange={handleInputChange}/>
         </div>
 

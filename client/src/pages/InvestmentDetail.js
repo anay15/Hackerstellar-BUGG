@@ -11,13 +11,13 @@ const InvestmentDetail=()=>{
 
     const handleAdd=async()=>{
        
-        
+      const inv=data.investmentPrice.slice(-1).pop().investmentPrice
         await fetch('/api/portfolio', {
             method:'POST',
              headers: {
                "Content-Type": "application/json",
              },
-            body:JSON.stringify({user_email:user.email,investmentName:data.name,investmentAmount:data.investmentPrice[0].investmentPrice,investmentDate:'2022',quantity:1})
+            body:JSON.stringify({user_email:user.email,investmentName:data.name,investmentAmount:inv,investmentDate:'2022',quantity:1})
            }).then((resp) =>(resp.json()))
            .then((data) => {
              

@@ -1,15 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import RangeSlider from '../components/RangeSlider';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 function Profile() {
     const user=useSelector((state)=>state.auth.user);
     const [name,setName]=useState('');
 
+    const dispatch=useDispatch();
+
+
+    const [value, setValue] = useState(5);
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    
+    };
+
+    const [value2, setValue2] = useState(5);
+
+    const handleChange2 = (event) => {
+        setValue2(event.target.value);
+    
+    };
+
     useEffect(()=>{
         if(user)
         setName(user.name)
-    },[user])
+    },[user]);
+
+    const handleSubmit=async()=>{
+
+        await fetch('/api/auth/update', {
+            method:'POST',
+             headers: {
+               "Content-Type": "application/json",
+             },
+            body:JSON.stringify({email:user.email,riskTolerance:0,environmentalScore:parseInt(value),socialScore:parseInt(value2)})
+           }).then((resp) =>(resp.json()))
+           .then((data) => {
+                 
+                  localStorage.setItem("environment", value);
+                  localStorage.setItem("social",value2);
+
+             
+            if (data.ok) {
+               
+              console.log(data)
+             }
+              else {
+               if (data.errors) console.log(data.errors);
+               
+             }
+           })
+
+    }
+
+
     return (
         <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
             <Card style={{ width: '50%' }}>
@@ -24,12 +70,30 @@ function Profile() {
                     </Card.Text>
                    
                     Environmental Impact
-                    <RangeSlider style={{ justifyContent: 'center' }} />
+                    <div>
+                        <input
+                            type="range"
+                            min="0"
+                            max="10"
+                            value={value}
+                            onChange={handleChange}
+                        />
+                        <p>Selected value: {value}</p>
+                    </div>
 
                     Societal Impact
-                    <RangeSlider />
+                    <div>
+                        <input
+                            type="range"
+                            min="0"
+                            max="10"
+                            value={value2}
+                            onChange={handleChange2}
+                        />
+                        <p>Selected value: {value2}</p>
+                    </div>
 
-                    <Button>Save</Button>
+                    <Button onClick={()=>{handleSubmit()}}>Save</Button>
                 </Card.Body>
             </Card>
         </div>

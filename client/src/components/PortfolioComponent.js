@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap"
 import LineChart from "./LineChart";
+import './PortfolioComponent.css';
 
 
 const PortfolioComponent=({data})=>{
