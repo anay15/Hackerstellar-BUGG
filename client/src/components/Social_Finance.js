@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modify_sort } from "../reducers/filterSlice";
 
-function Sort(){
+function Sort_Finance(){
     //const get=useSelector((state) => state.sort.value);
     
     const [sort,setsort]=useState('');
@@ -18,19 +18,12 @@ function Sort(){
        
         if (checked) {
             dispatch(modify_sort(value))
-            //setsort([...sort,value]);
+           
           }
         
           else {
-            //console.log('not checked')
-            //new_sort2=sort
-            //let x=[]
-            //x=new_sort2.filter((e)=>e!=value);
-            //console.log('x not checkef is',x)
             dispatch(modify_sort(''))
-            //setsort(x)
           }
-        //console.log(sort)
        
     }
 
@@ -43,18 +36,18 @@ function Sort(){
     <div class='main' style={{padding:5,marginTop:10}}>
         
         <div class='header' style={{fontWeight:'bold',fontSize:23}}>
-        Environmental Impact
+         Financial Risk
         </div>
 
         <div class="form-check"  >
-        <input class="form-check-input" type="checkbox" value='asc' id="flexCheck1" onChange={handleChange}/>
+        <input class="form-check-input" type="checkbox" value='asc_finance' id="flexCheck1" onChange={handleChange}/>
         <label class="form-check-label text" for="flexCheck1" style={{fontSize:'1.2em'}}>
         Ascending
         </label>
         </div>
 
         <div class="form-check">
-        <input class="form-check-input" type="checkbox" value='desc' id="flexCheckDefault" onChange={handleChange}/>
+        <input class="form-check-input" type="checkbox" value='desc_finance' id="flexCheckDefault" onChange={handleChange}/>
         <label class="form-check-label text" for="flexCheckDefault" style={{fontSize:'1.2em'}}>
         Descending
         </label>
@@ -67,4 +60,4 @@ function Sort(){
   )
 
 }
-export default Sort
+export default Sort_Finance

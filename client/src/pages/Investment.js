@@ -3,20 +3,30 @@ import InvestmentCard from "../components/InvestmentCard"
 import CarouselComponent from "../components/Carousel";
 import { useSelector } from "react-redux";
 import Sort from "../components/Sort";
+import Sort_Social from "../components/Sort_Social";
+import Sort_Finance from "../components/Social_Finance";
+import Searchbar from "../components/searchBar";
 
 
 const Investment=()=>{
     const [data,setData]=useState([]);
     const [loaded,setLoaded]=useState(0);
     const sort=useSelector((state)=>state.filters.sort);
+    const search=useSelector((state)=>state.filters.search);
     console.log(sort)
     useEffect(()=>{
 
         (async()=>{
-        let url='/api/investments/'
+        let url='/api/investments'
         if(sort!=''){
-          url=url.concat('&sort='+sort)
-      }
+          url=url.concat('?sort='+sort)
+          if(search!=''){
+            url=url.concat('&search='+search);
+          }
+        }
+        else if(search!=''){
+          url=url.concat('?search='+search);
+        }
       console.log(url)
 
         await fetch(url, {
@@ -41,21 +51,37 @@ const Investment=()=>{
         return () => {
             // this now gets called when the component unmounts
           };
-    },[sort]);
+    },[sort,search]);
 
 
     
     return(
 
       <div class='container-fluid'>
+
         <div class='row'>
+        
 
 
         <div class='col-2'>
+
+          <div class='row'>
           <Sort/>
+          </div>
+
+          <div class='row'>
+          <Sort_Social/>
+          </div>
+
+          <div class='row'>
+          <Sort_Finance/>
+          </div>
+
+
         </div>
 
-        <div class='col-10'>
+        <div class='col-10' style={{marginTop:10}}>
+        <Searchbar/>
          {loaded==1?
             (
                 <div class="row row-cols-4">

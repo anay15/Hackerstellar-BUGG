@@ -8,42 +8,20 @@ const getInvestment=async(req,res)=>{
     try{
         console.log('req',req.query)
 
-    //pagination for infinite scrolling
-    //let page = req.query.page??1;
+    
     let limit = 30;
 
     let query={};
     let sort={};
    
-    //search for product
-    /* if(req.query.search!=undefined){
+   if(req.query.search!=undefined){
         if(req.query.search!=''){
             let search=req.query.search.replaceAll("'","")
             let query2={}
-            let query3={}
-            query2['Description']={'$regex':search,'$options':'i'}
-            query3['Title']={'$regex':search,'$options':'i'}
-            query['$or']=[query3,query2]
+            query2['name']={'$regex':search,'$options':'i'}
+            query=query2
         }
     }
-
-    //sort for product
-    if(req.query.sort!=undefined){
-        if(req.query.sort!=''){
-            console.log('sort s thus ',req.query.sort)
-            switch(req.query.sort){
-                case 'asc':{
-                    sort={'CurrentPrice':1}
-                    break;
-                }
-                case 'desc':{
-                    sort={'CurrentPrice':-1}
-                    break;
-                }
-            }
-
-        }
-    } */
 
     //send request
     
@@ -60,17 +38,27 @@ const getInvestment=async(req,res)=>{
                         sort={'environmentalImpactScore':-1}
                         break;
                     }
+                    case 'asc_social':{
+                        sort={'socialImpactScore':1 }
+                        break;
+                    }
+                    case 'desc_social':{
+                        sort={'socialImpactScore':-1}
+                        break;
+                    }
+                    case 'asc_finance':{
+                        sort={'financialPerformance':1}
+                        break;
+                    }
+                    case 'desc_finance':{
+                        sort={'financialPerformance':-1}
+                        break;
+                    }
                 }
     
             }
         }
 
-        if(req.query.search!=undefined){
-            if(req.query.search!=''){
-                query={
-                    name:req.query.search}
-                }
-        }
 
     console.log('query is ',query)
     console.log('sort type is ',sort)
