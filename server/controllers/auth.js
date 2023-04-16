@@ -28,6 +28,7 @@ const createUser = async (req, res) => {
       ok: true,
       user,
       token,
+      navigate:'/investments',
     });
   } catch (error) {
     console.log(error);
@@ -66,6 +67,7 @@ const loginUser = async (req, res) => {
       ok: true,
       user,
       token,
+      navigate:'/portfolio'
     });
   } catch (error) {
     console.log(error);

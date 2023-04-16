@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Register=()=>{
-    const navigate=useNavigate()
+    const navigation=useNavigate()
     const dispatch=useDispatch();
     const [formValues, handleInputChange] = useForm({
         name: "",
@@ -38,7 +38,7 @@ const Register=()=>{
               .then((data) => {
                 console.log(data)
                if (data.ok) {
-                  const { user, token } = data;
+                  const { user, token ,navigate} = data;
                  console.log(user)
                   dispatch(authLogin(user))
                   
@@ -46,7 +46,8 @@ const Register=()=>{
                   localStorage.setItem("token", token);
                   localStorage.setItem("user", JSON.stringify(user));
                   localStorage.setItem("token-init-date", new Date().getTime());
-                  navigate('/')
+                  console.log(navigate)
+                  navigation(navigate)
         
                 }
                  else {

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import InvestmentCard from "../components/InvestmentCard"
 import CarouselComponent from "../components/Carousel";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Sort from "../components/Sort";
 import Sort_Social from "../components/Sort_Social";
 import Sort_Finance from "../components/Social_Finance";
 import Searchbar from "../components/searchBar";
+import { Button } from "react-bootstrap";
+import { modify_sort } from "../reducers/filterSlice";
 
 
 const Investment=()=>{
@@ -13,6 +15,7 @@ const Investment=()=>{
     const [loaded,setLoaded]=useState(0);
     const sort=useSelector((state)=>state.filters.sort);
     const search=useSelector((state)=>state.filters.search);
+    const dispatch=useDispatch()
     console.log(sort)
     useEffect(()=>{
 
@@ -53,6 +56,11 @@ const Investment=()=>{
           };
     },[sort,search]);
 
+    const clearSearch=()=>{
+      dispatch(modify_sort(''))
+
+    }
+
 
     
     return(
@@ -82,6 +90,7 @@ const Investment=()=>{
 
         <div class='col-10' style={{marginTop:10}}>
         <Searchbar/>
+        <Button variant='danger' onClick={()=>{clearSearch()}} style={{marginTop:8}}>Clear</Button>
          {loaded==1?
             (
                 <div class="row row-cols-4">
