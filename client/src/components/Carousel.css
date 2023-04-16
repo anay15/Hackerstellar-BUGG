@@ -1,23 +1,16 @@
 .carousel-container {
-    display: flex;
-    justify-content: center;
-    max-width: fit-content;
-    max-height: 10%;
-} 
-
-/* .container {
-    margin-top: 5%;
-    max-width: max-content;
-    max-height: max-content;
+    width: 100vw; /* set width to 100vw for full viewport width */
+    max-width: 100%; /* set max-width to 100% to stop at navbar width */
+    height: calc(100vh - 60px); /* set height to viewport height minus navbar height */
+    margin: 0 auto; /* center the carousel horizontally */
+    overflow: hidden; /* hide any overflowing content within the carousel */
+    position: relative; /* set position to relative for absolute positioning of carousel buttons */
 }
-    */
-
 
 .carousel-image {
-   
-    height: 30%;
-    width: 30%;
-    background-size: contain;
+    height: 100%;
+    width: 100%;
+    background-size: cover; /* use cover to fill the entire container while maintaining aspect ratio */
     background-position: center;
 }
 
@@ -47,6 +40,7 @@
 .carousel-button-next {
     right: 0;
 }
-.carousel-text{
+
+.carousel-text {
     color: black;
 }

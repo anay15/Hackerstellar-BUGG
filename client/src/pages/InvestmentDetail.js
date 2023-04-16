@@ -17,7 +17,7 @@ const InvestmentDetail=()=>{
              headers: {
                "Content-Type": "application/json",
              },
-            body:JSON.stringify({user_email:user.email,investmentName:data.name,investmentAmount:data.investmentPrice[0].investmentPrice,investmentDate:'2022'})
+            body:JSON.stringify({user_email:user.email,investmentName:data.name,investmentAmount:data.investmentPrice[0].investmentPrice,investmentDate:'2022',quantity:1})
            }).then((resp) =>(resp.json()))
            .then((data) => {
              

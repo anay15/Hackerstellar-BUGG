@@ -82,10 +82,11 @@ const addPortfolio=async(req,res)=>{
 const getPortfolio=async(req,res)=>{
     try{
         let query=req.query.email;
+        
         console.log(query)
         const investments=await Portfolio.findOne({user_email:query})
         res.status(200).json(investments)
-
+        
     }
     catch(error){
         res.json({message:error})

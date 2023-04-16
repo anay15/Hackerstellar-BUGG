@@ -13,6 +13,7 @@ const PortfolioComponent=({data})=>{
             <div style={{padding:5}}>
                 <p class="card-text">{data.investmentName}</p>
                 <p class="card-text">Amount : {data.investmentAmount}</p>
+                <p class="card-text">Quantity : {data.quantity}</p>
                 <p class="card-text">Date: {data.investmentDate}</p>
                 
             </div>

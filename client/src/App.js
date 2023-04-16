@@ -11,6 +11,7 @@ import Investment from './pages/Investment';
 import Profile from './pages/Profile';
 import InvestmentDetail from './pages/InvestmentDetail';
 import Portfolio from './pages/Portfolio';
+import Form from './pages/Blog';
 
 function App() {
   const logged_in=useSelector((state)=>state.auth.login);
@@ -51,6 +52,10 @@ function App() {
           <Route 
             path="/portfolio" 
             element={<Portfolio />} 
+          />
+            <Route 
+            path="/blog" 
+            element={<Form />} 
           />
 
           {!logged_in?

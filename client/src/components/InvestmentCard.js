@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import {BsBuildings} from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
+
+import "./investmentCard.css";
+
 const InvestmentCard=({data})=>{
     const navigation=useNavigate()
     const safety={

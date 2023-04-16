@@ -58,9 +58,28 @@ const getInvestment=async(req,res)=>{
     } */
 
     //send request
+    
+        if(req.query.sort!=undefined){
+            console.log('sort type is',req.query.sort)
+            if(req.query.sort!=''){
+                console.log('sort s thus ',req.query.sort)
+                switch(req.query.sort){
+                    case 'asc':{
+                        sort={'environmentalImpactScore':1}
+                        break;
+                    }
+                    case 'desc':{
+                        sort={'environmentalImpactScore':-1}
+                        break;
+                    }
+                }
+    
+            }
+        }
+
     console.log('query is ',query)
     console.log('sort type is ',sort)
-    const investments=await InvestmentOption.find()
+    const investments=await InvestmentOption.find().sort(sort)
     res.status(200).json(investments)
     
 }

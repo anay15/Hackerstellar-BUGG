@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { FaApple, FaSearch, FaShoppingBasket, FaTimes } from "react-icons/fa";
+import { TbBusinessplan } from "react-icons/tb";
 
 import './NavBarDemo.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +44,7 @@ function Navbar() {
                 <ul>
                     <li>
                         <a href="/">
-                            <FaApple />
+                            <TbBusinessplan />
                         </a>
                     </li>
                     <li>
