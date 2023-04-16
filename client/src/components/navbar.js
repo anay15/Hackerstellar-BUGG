@@ -43,7 +43,7 @@ function Navbar() {
             <div className="menu">
                 <ul>
                     <li>
-                        <a href="/">
+                        <a href="/investments">
                             <TbBusinessplan />
                         </a>
                     </li>
